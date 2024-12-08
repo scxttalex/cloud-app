@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" ng-app="Dashboard">
+  <head>
+    <meta charset="UTF-8">
+    <title>Asset Track</title>
+    <link rel="stylesheet" type="text/css" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="JS/bootstrap.js"></script>
+    <script type="text/javascript" src="JS/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="JS/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="JS/app.js"></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="#">LOGO</a>
+      </div>
+    
+      <!-- Centered search bar -->
+      <div class="search-bar">
+        <input type="text" placeholder="What do you wanna talk about?" />
+      </div>
+    
+      <!-- Night mode switch -->
+      <div class="night-mode-switch">
+        <label for="night-mode-toggle" class="switch">
+          <input type="checkbox" id="night-mode-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    
+      <!-- Profile Section with Dropdown (hidden when logged out) -->
+      <div id="profileSection" class="hidden">
+        <div class="profile-dropdown">
+          <button id="profileButton" class="dropdown-btn" style="padding: 5px ">
+            <img id="profilePic" src="" alt="Profile Picture" class="profile-pic">
+            <span id="userNameDisplay"></span>
+          </button>
+          <div id="dropdownMenu" class="dropdown-content">
+            <button id="viewUserPosts" class="dropdown-item" style="margin: 5px 0;" onclick="toggleViewUserPosts()">View My Posts</button>
+            <button id="manageUser" class="dropdown-item"style="margin-bottom: 5px;" onclick="toggleManageForm()">Account Management</button>
+            <button id="logoutButton" class="btn btn-danger">Log Out</button>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Auth Buttons (Login/SignUp) -->
+      <div class="login-section" id="authButtons" style="display: block;">
+        <button class="btn btn-primary" id="loginBtn" onclick="toggleLoginForm()">Login</button>
+        <button class="btn btn-primary" id="signupBtn" onclick="toggleSignupForm()">Sign Up</button>
+      </div>
+    </header>
+
+    <div class="container"> <!-- make post -->
+
+        <!-- New Asset Box -->
+        <div class="row align-items-start" id="Make-Post">
+            <div class="col-2 d-flex justify-content-center align-items-center">
+                <!-- Placeholder for profile image -->
+                <img id="makePostProfilePic" src="" alt="Profile Picture" class="rounded-circle" width="50" height="50">
+            </div>
+
+            <div class="col-8" style="text-align: left;">
+                <form style="font-size: 10pt;" id="newAssetForm" class="form-asset">
+                    <div class="mb-3">
+                        <textarea class="form-control" id="postText" rows="4" placeholder="Whats going on?!"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" id="userID">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" id="userID">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="upFile" class="form-label">File to Upload</label>
+                        <input type="file" class="form-control" id="upFile">
+                    </div>
+
+                    <button type="button" id="subNewPost" class="btn btn-primary">Post</button> <br/><br/>
+                </form>
+            </div>
+
+            <div class="col-2"></div>
+        </div>
+
+        <!-- View Asset Area-->
+        <div class="row align-items-start">
+            <div class="col-2"></div>
+
+            <div class="col-8" style="text-align: left;">
+                <div id="ImageList">
+                    <h4>bruh</h4>
+                </div>
+            </div>
+
+            <div class="col-2"></div>
+        </div>
+
+    </div>
+
+    <!-- Overlay for Login Form -->
+    <div id="loginOverlay" class="overlay">
+        <div class="form-container">
+            <h4>Login</h4>
+            <input type="text" id="loginUserName" class="form-control" placeholder="Username">
+            <input type="password" id="loginPassword" class="form-control" placeholder="Password">
+            <button class="btn btn-primary" id="logIn" onclick="login()">Submit</button>
+            <button class="btn btn-secondary" onclick="closeLoginForm()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Overlay for Sign Up Form -->
+    <div id="signupOverlay" class="overlay">
+        <div class="form-container">
+            <h4>Sign Up</h4>
+            <input type="email" id="signupEmail" class="form-control" placeholder="Email">
+            <input type="text" id="signupUserName" class="form-control" placeholder="Username">
+            <input type="password" id="signupPassword" class="form-control" placeholder="Password">
+            <button class="btn btn-primary" id="signUp" onclick="signUp()">Sign Up</button>
+            <button class="btn btn-secondary" onclick="closeSignupForm()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Overlay Container for Users Own Posts -->
+    <div id="myPostsOverlay" class="overlay">
+      <div class="form-container">
+        <h4>My Posts</h4>
+        <button id="closeOverlay" style="float: right;" onclick="closeUserPosts()">X</button>
+        <div id="myPostsList">
+          <!-- Posts will be dynamically loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Management Overlay -->
+    <div id="manageOverlay" class="overlay">
+      <div class="form-container">
+        <h4>Account Management</h4>
+
+          <!-- Profile Picture Preview Section -->
+          <div class="profile-container">
+            <label for="profilePicUpload">
+              <img id="profilePicPreview" src="profile-placeholder.jpg" alt="Profile Picture" class="rounded-circle" width="100" height="100">
+            </label>
+            <input type="file" id="profilePicUpload" style="display: none;" accept="image/*" onchange="previewProfilePic(event)">
+            
+            <label id="userNameLabel" for="userName" class="form-label">Username</label>
+
+
+          </div>
+          <button class="btn btn-primary" id="updateUser">Update Profile</button>
+          <button class="btn btn-secondary" onclick="closeManageForm()">Cancel</button>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+         // JavaScript for handling login functionality
+        function toggleLoginForm() {
+            document.getElementById('loginOverlay').style.display = 'flex';
+        }
+
+        function toggleSignupForm() {
+            document.getElementById('signupOverlay').style.display = 'flex';
+        }
+
+        function closeLoginForm() {
+            document.getElementById('loginOverlay').style.display = 'none';
+        }
+        function closeSignupForm() {
+            document.getElementById('signupOverlay').style.display = 'none';
+        }
+
+         // JavaScript for handling login functionality
+         function toggleViewUserPosts() {
+            fetchMyPosts();
+            document.getElementById('myPostsOverlay').style.display = 'flex';
+        }
+
+        function closeUserPosts() {
+            document.getElementById('myPostsOverlay').style.display = 'none';
+        }
+
+
+        // JavaScript to toggle dark mode when the night mode switch is clicked
+        document.getElementById('night-mode-toggle').addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('night-mode'); // Activate dark mode
+            } else {
+                document.body.classList.remove('night-mode'); // Deactivate dark mode
+            }
+        });
+
+        // Function to toggle night mode for dropdown elements
+function toggleNightModeForDropdown(enable) {
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    if (enable) {
+        dropdownMenu.classList.add('dropdown-night-mode');
+    } else {
+        dropdownMenu.classList.remove('dropdown-night-mode');
+    }
+}
+
+        document.addEventListener("DOMContentLoaded", function () {
+  const profileButton = document.getElementById("profileButton");
+  const dropdownMenu = document.getElementById("dropdownMenu");
+  const logoutButton = document.getElementById("logoutButton");
+
+  // Toggle dropdown visibility
+  profileButton.addEventListener("click", function () {
+    dropdownMenu.classList.toggle("active");
+  });
+
+  // Handle logout button click
+  logoutButton.addEventListener("click", function () {
+    sessionStorage.clear(); // Clear session data
+    window.location.reload(); // Reload the page to update UI
+  });
+
+  // Close the dropdown if clicked outside
+  window.addEventListener("click", function (event) {
+    if (!profileButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+      dropdownMenu.classList.remove("active");
+    }
+  });
+});
+
+updateHeaderUI(); // Initialize UI based on session state
+    </script>
+  </body>
+</html>

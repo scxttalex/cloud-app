@@ -1,0 +1,472 @@
+/* Post-style feed */
+#ImageList {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.post {
+    background: #ffffff;
+    border: 1px solid #e6ecf0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: black;
+    display: flex;
+    align-items: flex-start; /* Keep items aligned from top */
+}
+
+/* Profile picture container */
+.post .profile-pic-container {
+    width: 70px; /* Fixed width for profile image container */
+    height: 70px; /* Fixed height for profile image container */
+    display: flex;
+    justify-content: center; /* Center profile image horizontally */
+    align-items: center;    /* Center profile image vertically */
+    margin-right: 15px;     /* Space between the profile image and the content */
+}
+
+.post .profile-pic-container img {
+    width: 50px;  /* Fixed size for the profile image */
+    height: 50px;
+    border-radius: 50%;  /* Round the profile image */
+    object-fit: cover;  /* Ensure the image keeps its aspect ratio */
+}
+
+/* Post header (username, @user, post time) */
+.post-header {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-start; /* Align content to the top */
+    flex-grow: 1; /* Allow the content to take up remaining space */
+}
+
+.post-info {
+    font-size: 14px;
+    line-height: 1.2;
+    display: flex; /* Ensure the elements align horizontally */
+    gap: 10px; /* Adjust spacing between the elements */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.post-info strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.post-info span {
+    color: #657786;
+}
+.post-info span:last-child {
+    margin-left: auto; /* Push the "time created" to the far right */
+    font-size: 12px; /* Optional: Make the time text slightly smaller */
+    color: #999; /* Optional: Differentiate the color for clarity */
+}
+
+.post-content {
+    margin-top: 10px;
+}
+
+.post-content p {
+    font-size: 15px;
+    margin: 5px 0;
+    color: #333;
+}
+
+/* Standardized size for post images */
+.post-image {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: block;
+    object-fit: cover;
+}
+
+/* Default Light Mode Styles */
+body {
+    background-color: white;
+    color: black;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Center the search bar */
+.search-bar {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+    align-self: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.night-mode {
+    margin-left: 10px;
+}
+
+
+.night-mode #loginBtn, .night-mode #signupBtn {
+    color: white;
+    background-color: #555555;
+    border-color: #777777;
+}
+
+/* Styling the Night Mode Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: rgba(255, 0, 0, 0); /* transparent */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+
+body.night-mode .post {
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.night-mode .post span {
+    color: #717b76;
+}
+
+body.night-mode .post strong {
+    color: #ffffff;
+}
+
+body.night-mode .post p {
+    color: #ffffff;
+}
+
+body.night-mode .post img {
+    filter: brightness(0.8);
+}
+
+body.night-mode button {
+    background-color: #444;
+    color: white;
+}
+
+body.night-mode .search-bar input {
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+}
+
+body.night-mode .search-bar button {
+    background-color: #444;
+    color: white;
+}
+
+body.night-mode a {
+    color: #ffffff;
+}
+
+body.night-mode a:hover {
+    color: #bb86fc;
+}
+
+/* Make the profile image circular and aligned properly */
+img.rounded-circle {
+    object-fit: cover;
+}
+
+/* Optional: style the post text area to look cleaner */
+#postText {
+    resize: none;
+    border: 1px solid #ccc;
+}
+
+/* Optional: give the "Post" button a slightly larger look */
+button#subNewForm {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* Overlay Styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 580px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .form-container h4 {
+    margin-bottom: 20px;
+  }
+
+  .form-container input {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  /* Light Mode Styles */
+body {
+    background-color: white;
+    color: black;
+  }
+  
+  .night-mode {
+    background-color: #121212;
+    color: white;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button.night-mode {
+    background-color: #3a3a3a;
+    color: white;
+    border: none;
+  }
+  
+  button.night-mode:hover {
+    background-color: #555;
+  }
+  
+  input, textarea {
+    background-color: #fff;
+    color: black;
+    border: 1px solid #ccc;
+  }
+  
+  input.night-mode, textarea.night-mode {
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+  }
+  
+  /* Style the login and signup modal form inputs */
+  .form-control {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+  }
+  
+  .night-mode .form-control {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+  }
+  
+  /* Specific Styling for the Forms */
+  .form-label {
+    color: #333;
+  }
+  
+  .night-mode .form-label {
+    color: #fff;
+  }
+
+  /* Style for login and signup forms in overlay */
+  .form-container input {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+  }
+
+  .night-mode .form-container input {
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+  }
+
+  .night-mode .form-container{
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+  }
+
+  #profileIcon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#profileImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Profile dropdown styles */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-btn {
+    background: #cccccc;
+    color: #121212;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: .25rem;
+  }
+  
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+    border-radius: 4px;
+  }
+  
+  .dropdown-content a,
+  .dropdown-content button {
+    padding: 10px;
+    text-align: left;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    display: block;
+    border-radius: .25rem;
+  }
+  
+  .dropdown-content a:hover,
+  .dropdown-content button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Show dropdown when active */
+  .dropdown-content.active {
+    display: flex;
+  }
+
+ .dropdown-menu .dropdown-item {
+    display: block;       /* Ensure items are block-level for consistent spacing */
+    padding: 8px 15px;    /* Adjust padding for better button spacing */
+    margin: 5px 0;        /* Add spacing between buttons */
+}
+
+.dropdown-menu {
+    padding: 10px;        /* Add padding inside the dropdown menu if needed */
+}
+
+#myPostsList {
+    max-height: 500px;  /* Adjust this value to control how tall the scrollable area should be */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    padding-right: 10px;  /* Optional: Adds space for the scroll bar */
+}
+
+.delete-post-btn {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;  /* Space between the time and the button */
+}
+.delete-post-btn:hover {
+    color: darkred;  /* Change color on hover */
+}
+
+.post-video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+#Make-Post{
+    margin-left: 10%;
+}
+
