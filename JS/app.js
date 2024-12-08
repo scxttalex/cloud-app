@@ -506,7 +506,7 @@ function fetchMyPosts() {
 
   // Show a loading indicator
   const myPostsList = document.getElementById('myPostsList');
-  myPostsList.innerHTML = '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>';
+  myPostsList.innerHTML = '<div class="spinner-border" role="status"><span class="sr-only"></span></div>';
 
   // Fetch "My Posts" data
   fetch(`${MY_POSTS_API1}${userId}${MY_POSTS_API2}`)

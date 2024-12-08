@@ -6,6 +6,12 @@
     font-family: Arial, sans-serif;
 }
 
+#logo{
+  width: 70px;
+  height: 70px;
+  margin-left: 110px;
+}
+
 .post {
     background: #ffffff;
     border: 1px solid #e6ecf0;
@@ -104,7 +110,7 @@ header {
 /* Center the search bar */
 .search-bar {
     width: 100%;
-    max-width: 580px;
+    max-width: 600px;
     margin: 0 auto;
     align-self: center;
 }
@@ -257,8 +263,12 @@ button#subNewForm {
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
-    width: 580px;
+    width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .form-asset{
+    width: 600px
   }
 
   .form-container h4 {
